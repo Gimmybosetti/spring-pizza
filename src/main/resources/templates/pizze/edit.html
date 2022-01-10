@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragment/resources :: head"></div>
+		<title>Modifica Pizza</title>
+	</head>
+	<body>
+		<div class="flex-container">
+			<h1 class="text-center">Pizza</h1 >
+			<hr/>
+			<div class="row">
+				<div class="col-6 offset-3 mt-4">
+					<form
+						id="pizza-form"
+						th:object="${pizza}"
+						th:action="@{/pizze/create}"
+						method="POST" class="mx-5">
+						<div class="row gy-2">
+							<div class="col-10">
+								<label class="form-label" for="nome">Nome</label>
+								<input type="text" class="form-control" id="nome" th:field="*{nome}">
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="prezzo">Prezzo</label>
+								<input type="number" class="form-control" id="prezzo" step=".01" th:field="*{prezzo}">
+							</div>
+							<div class="col-12">
+								<label class="form-label" for="descrizione">Descrizione</label>
+								<textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" rows="2"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2 mt-3">
+								<button class="btn btn-primary" type="submit">Salva</button>
+							</div>
+							<div class="col-2 offset-8 mt-3">
+								<a class="btn btn-primary" th:href="@{/}" th:text="Indietro"></a>
+							</div >
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragment/resources :: scripts"></div>
+	</body>
+</html >
