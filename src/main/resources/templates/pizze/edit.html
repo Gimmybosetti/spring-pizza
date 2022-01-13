@@ -10,7 +10,7 @@
 			<form
 				id="pizza-form"
 				th:object="${pizza}"
-				th:action="${edit} ? @{/edit/{id}(id=${pizza.id})} : @{/pizze/create}"
+				th:action="${edit} ? @{/pizze/edit/{id}(id=${pizza.id})} : @{/pizze/create}"
 				method="POST" class="mx-5">
 				<ul>
 					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
