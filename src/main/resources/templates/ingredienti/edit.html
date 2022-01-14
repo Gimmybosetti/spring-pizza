@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragment/resources :: head"></div>
+		<title>Crea Ingrediente</title>
+	</head>
+	<nav th:replace="fragment/navbar :: navbar('ingredienti')"></nav>
+	<body>
+		<div class="container">
+			<h1 class="text-center">Ingrediente</h1 >
+			<hr/>
+			<form
+				id="ingrediente-form"
+				th:object="${ingrediente}"
+				th:action="${edit} ? @{/ingredienti/edit/{id}(id=${ingrediente.id})} : @{/ingredienti/create}"
+				method="POST" class="mx-5">
+				<ul>
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
+				</ul>
+				<div class="row">
+					<div class="col-6 offset-2 mt-4">
+						<div class="row gy-2">
+							<div class="col-12">
+								<label class="form-label" for="nome">Nome</label>
+								<input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+									</ul>
+								</div >
+							</div>
+						</div>
+						<div class="col-12 mt-3">
+							<button class="btn btn-primary" type="submit">Salva</button>
+							<a class="btn btn-primary" th:href="@{/ingredienti}" th:text="Indietro"></a>
+						</div>
+					</div>
+			</form>
+		</div>
+		<div th:replace="fragment/resources :: scripts"></div>
+	</body>
+</html >

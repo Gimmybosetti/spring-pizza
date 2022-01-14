@@ -1,6 +1,7 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -69,5 +70,13 @@ public class Pizza {
 
 	@NotNull
 	private BigDecimal prezzo;
+	
+	public String ingredientiToString() {
+		List<String> ingredientiString = new ArrayList<>();
+		for(Ingredienti i : ingredienti) {
+			ingredientiString.add(i.getNome());
+		}
+		return String.join(", ", ingredientiString);
+	}
 	
 }

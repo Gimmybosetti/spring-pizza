@@ -14,8 +14,24 @@ public class IngredientiService {
 	@Autowired
 	private IngredientiRepository repository;
 	
-	public List<Ingredienti> findAllSortByNome() {
+	public List<Ingredienti> findByKeywordSortedByNome(String keyword) {
+		return repository.findByNomeContainingIgnoreCaseOrderByNome(keyword);
+	}
+	
+	public List<Ingredienti> findAllSortedByNome() {
 		return repository.findAll(Sort.by("nome"));
+	}
+	
+	public Ingredienti create(Ingredienti ingredienti) {
+		return repository.save(ingredienti);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Ingredienti getById(Integer id) {
+		return repository.getById(id);
 	}
 	
 }

@@ -46,7 +46,7 @@ public class PizzaController {
 	public String createPizza (Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("pizza", new Pizza() );
-		model.addAttribute("ingredienti", ingredientiService.findAllSortByNome());
+		model.addAttribute("ingredienti", ingredientiService.findAllSortedByNome());
 		return "/pizze/edit";
 	}
 	
@@ -54,7 +54,7 @@ public class PizzaController {
 	public String doCreate (@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			model.addAttribute("ingredienti", ingredientiService.findAllSortByNome());
+			model.addAttribute("ingredienti", ingredientiService.findAllSortedByNome());
 			return "/pizze/edit";
 		}
 		service.create(formPizza);
@@ -65,7 +65,7 @@ public class PizzaController {
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("pizza", service.getById(id));
-		model.addAttribute("ingredienti", ingredientiService.findAllSortByNome());
+		model.addAttribute("ingredienti", ingredientiService.findAllSortedByNome());
 		return "/pizze/edit";
 	}
 	
@@ -73,7 +73,7 @@ public class PizzaController {
 	public String doUpdate(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model,  RedirectAttributes redirectAttributes) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-			model.addAttribute("ingredienti", ingredientiService.findAllSortByNome());
+			model.addAttribute("ingredienti", ingredientiService.findAllSortedByNome());
 			return "/pizze/edit";
 		}
 		service.update(formPizza);

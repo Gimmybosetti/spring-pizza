@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragment/resources :: head"></div>
+		<title>Ingredienti</title>
+	</head>
+	<body>
+	<nav th:replace="fragment/navbar :: navbar('ingredienti')"></nav>
+	<div class="container">
+		<h1>Ingredienti</h1>
+		<hr/>
+		<div class="mb-3 d-flex justify-content-between">
+			<a class="btn btn-primary" th:href="@{/ingredienti/create}"><i class="fas fa-plus me-2"></i>Aggiungi ingrediente</a>
+			<form th:action="@{/ingredienti}" method="get">
+				<div class="input-group">
+		      		<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search" aria-label="Search">
+		      		<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+				</div>
+	    	</form >
+		</div >
+		<table class="table" th:if="${list.size() > 0}">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th></th >
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${list}">
+					<td class="w-75" th:text="${item.nome}"></td >
+					<td class="w-25">
+						<a class="btn btn-primary" th:href="@{|/ingredienti/delete/${item.id}|}" onclick="return confirm('Sei sicuro?')"><i class="fas fa-trash-alt"></i></a>
+						<a class="btn btn-primary" th:href="@{|/ingredienti/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+					</td  >
+				</tr >
+			</tbody>
+		</table>
+		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
+			Non ci sono ingredienti nel database
+		</div>
+	</div>
+		<div th:replace="fragment/resources :: scripts"></div>
+	</body>
+</html >
