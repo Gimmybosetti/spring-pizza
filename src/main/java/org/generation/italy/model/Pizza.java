@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,6 +21,7 @@ public class Pizza {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty(message="Nome obbligatorio")
 	private String nome;
 	
 	@Lob
@@ -68,7 +70,7 @@ public class Pizza {
 		this.prezzo = prezzo;
 	}
 
-	@NotNull
+	@NotNull(message="il prezzo è obbligatorio")
 	private BigDecimal prezzo;
 	
 	public String ingredientiToString() {

@@ -22,20 +22,10 @@
 							<div class="col-10">
 								<label class="form-label" for="nome">Nome</label>
 								<input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
-								<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
-									</ul>
-								</div >
 							</div>
 							<div class="col-2">
 								<label class="form-label" for="prezzo">Prezzo</label>
-								<input type="number" class="form-control" id="prezzo" step=".01" th:field="*{prezzo}">
-								<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
-									</ul>
-								</div >
+								<input type="number" class="form-control" id="prezzo" step=".01" th:field="*{prezzo}" th:errorClass="is-invalid">
 							</div>
 							<div class="col-12">
 								<label class="form-label" for="descrizione">Descrizione</label>
